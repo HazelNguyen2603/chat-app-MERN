@@ -1,1 +1,2 @@
-export * from "./message.controller";
+export * from "./sendMessage.controller";
+export * from "./getMessage.controller";
