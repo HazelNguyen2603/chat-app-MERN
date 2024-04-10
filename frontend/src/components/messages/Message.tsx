@@ -1,21 +1,35 @@
+import { useAuthContext } from "context";
 import React from "react";
+import { IMessage } from "types";
+import { extractTime } from "utils";
+import useConversation from "zustand/useConversation";
 
-const Message = () => {
+interface IMessageProps {
+  message: IMessage;
+}
+
+const Message = ({ message }: IMessageProps) => {
+  const { authUser } = useAuthContext();
+  const { seletedConversation } = useConversation();
+  const fromMe = authUser?._id === message?.senderId;
+  const chatClassName = fromMe ? "chat-end" : "chat-start";
+  const profilePic = fromMe
+    ? authUser.profilePic
+    : seletedConversation?.profilePic;
+  const bubbleBgColor = fromMe ? "bg-green-500" : "";
+
   return (
-    <div className={`chat chat-end`}>
+    <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS chat bubble component"
-            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-          />
+          <img alt="Tailwind CSS chat bubble component" src={profilePic} />
         </div>
       </div>
-      <div className={`chat-bubble text-white bg-green-500 pb-2`}>
-        Hi, what's up!
+      <div className={`chat-bubble text-white pb-2 ${bubbleBgColor}`}>
+        {message.message}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">
-        12:40
+        {extractTime(message?.createdAt ?? "")}
       </div>
     </div>
   );
