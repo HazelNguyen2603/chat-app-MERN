@@ -8,7 +8,10 @@ import {
 import { useAuthContext } from "./AuthContext";
 import { io } from "socket.io-client";
 
-export const SocketContext = createContext<any>();
+export const SocketContext = createContext<any>({
+  socket: null,
+  onlineUsers: [],
+});
 
 export const useSocketContext = () => {
   return useContext(SocketContext);
@@ -36,7 +39,9 @@ export const SocketContextProvider = ({ children }: ISocketContextProvider) => {
         setOnlineUsers(users);
       });
 
-      return () => newSocket.close();
+      return () => {
+        newSocket.close();
+      };
     } else {
       if (socket) {
         socket.close();

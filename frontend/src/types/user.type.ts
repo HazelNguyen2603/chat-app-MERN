@@ -9,5 +9,5 @@ export interface IUser extends ILogin, IBase {
   fullName: string;
   confirmPassword: string;
   gender: string;
-  profilePic: string;
+  profilePic?: string;
 }
