@@ -1,4 +1,4 @@
-import { removeTokenFromcookie } from "../../utils/index";
+import { removeTokenFromcookie } from "../../utils/index.js";
 
 export const logout = async (req, res) => {
   try {

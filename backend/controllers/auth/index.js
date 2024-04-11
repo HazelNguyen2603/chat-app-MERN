@@ -1,3 +1,3 @@
-export * from "./login.controller";
-export * from "./logout.controller";
-export * from "./signup.controller";
+export * from "./login.controller.js";
+export * from "./logout.controller.js";
+export * from "./signup.controller.js";

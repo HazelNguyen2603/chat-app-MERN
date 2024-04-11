@@ -1,5 +1,5 @@
-import { Conversation, Message } from "../../models";
-import { getReceiverSocketId, io } from "../../socket/socket";
+import { Conversation, Message } from "../../models/index.js";
+import { getReceiverSocketId, io } from "../../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {

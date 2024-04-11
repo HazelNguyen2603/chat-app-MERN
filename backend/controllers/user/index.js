@@ -1,1 +1,1 @@
-export * from "./getUserForSidebar";
+export * from "./getUserForSidebar.js";
