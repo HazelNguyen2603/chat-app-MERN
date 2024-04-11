@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-import connectToMongoDB from "./db/connectToMongoDB";
-import { authRoutes, messageRoutes, userRoutes } from "./routes/index";
+import connectToMongoDB from "./db/connectToMongoDB.js";
+import { authRoutes, messageRoutes, userRoutes } from "./routes/index.js";
 import express from "express";
 import cookieParser from "cookie-parser";
-import { app, server } from "./socket/socket";
+import { app, server } from "./socket/socket.js";
 import path from "path";
 
 dotenv.config();
