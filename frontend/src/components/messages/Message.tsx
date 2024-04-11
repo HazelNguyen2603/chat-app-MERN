@@ -17,6 +17,7 @@ const Message = ({ message }: IMessageProps) => {
     ? authUser.profilePic
     : seletedConversation?.profilePic;
   const bubbleBgColor = fromMe ? "bg-green-500" : "";
+  const shakeClass = message.shouldShake ? "shake" : "";
 
   return (
     <div className={`chat ${chatClassName}`}>
@@ -25,7 +26,9 @@ const Message = ({ message }: IMessageProps) => {
           <img alt="Tailwind CSS chat bubble component" src={profilePic} />
         </div>
       </div>
-      <div className={`chat-bubble text-white pb-2 ${bubbleBgColor}`}>
+      <div
+        className={`chat-bubble text-white pb-2 ${bubbleBgColor} ${shakeClass}`}
+      >
         {message.message}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">

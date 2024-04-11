@@ -4,4 +4,5 @@ export interface IMessage extends IBase {
   senderId: string;
   receiverId: string;
   message: string;
+  shouldShake?: boolean;
 }

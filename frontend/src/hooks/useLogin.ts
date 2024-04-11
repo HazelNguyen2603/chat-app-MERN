@@ -26,8 +26,7 @@ const useLogin = () => {
 
       const data = await res.json();
       if (data.error) throw new Error(data.error);
-
-      localStorage.setItem("chat-user", data);
+      localStorage.setItem("chat-user", JSON.stringify(data));
       setAuthUser(data);
     } catch (error: any) {
       toast.error(error?.message);

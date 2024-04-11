@@ -11,7 +11,6 @@ export const login = async (req, res) => {
     if (!user || !isPassCorrect) {
       return res.status(400).json({ error: "Invalid username or password" });
     }
-
     generateTokenAndSetCookie(user._id, res);
 
     res.status(200).json({

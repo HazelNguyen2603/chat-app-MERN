@@ -18,7 +18,7 @@ interface IAuthContextProvider {
 }
 export const AuthContextProvider = ({ children }: IAuthContextProvider) => {
   const [authUser, setAuthUser] = useState<IUser | null>(() => {
-    const storedUser = localStorage.getItem("chat-app");
+    const storedUser = localStorage.getItem("chat-user");
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
