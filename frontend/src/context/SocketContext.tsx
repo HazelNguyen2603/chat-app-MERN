@@ -27,6 +27,7 @@ export const SocketContextProvider = ({ children }: ISocketContextProvider) => {
 
   useEffect(() => {
     if (authUser) {
+      //change url to http://localhost:5000 if test local
       const newSocket = io("https://chat-app-mern-bt50.onrender.com", {
         query: {
           userId: authUser._id,
