@@ -1,10 +1,12 @@
-import React, { RefObject, useEffect, useRef } from "react";
-import Message from "./Message";
-import { useGetMessages, useListenMessages } from "hooks";
 import { MessageSkeleton } from "components/skeletons";
+import { useGetMessages, useListenMessages } from "hooks";
+import useDeleteMessage from "hooks/useDeleteMessage";
+import { useEffect, useRef } from "react";
+import Message from "./Message";
 
 const Messages = () => {
-  const { messages, loading } = useGetMessages();
+  const { messages, loading, getMessages } = useGetMessages();
+  const { loading: loadingDelete, deleteMessage } = useDeleteMessage();
 
   //this hook will listening all incomming messages
   useListenMessages();
@@ -15,17 +17,24 @@ const Messages = () => {
     }, 100);
   }, [messages]);
 
+  const handleDeleteMessage = async (messageId: string) => {
+    await deleteMessage(messageId);
+    await getMessages();
+  };
+
   return (
     <div className="px-4 flex-1 overflow-auto">
-      {!loading &&
+      {(!loading || !loadingDelete) &&
         messages.length > 0 &&
         messages?.map((message) => (
           <div key={message._id} ref={lastMessageRef}>
-            <Message message={message} />
+            <Message message={message} onDeleteMessage={handleDeleteMessage} />
           </div>
         ))}
-      {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
-      {!loading && messages.length === 0 && (
+      {(loading || loadingDelete) &&
+        [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
+
+      {(!loading || !loadingDelete) && messages.length === 0 && (
         <p className="text-center text-slate-600">
           Send a message to start a conversation
         </p>
