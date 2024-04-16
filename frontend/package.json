@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "//": "vite-tsconfig-paths package to enable to import relative path",
   "dependencies": {
     "chat-app-mern": "file:..",
     "react": "^18.2.0",
