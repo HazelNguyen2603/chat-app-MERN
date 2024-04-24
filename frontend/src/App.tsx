@@ -11,7 +11,8 @@ function App() {
   const { authUser } = useAuthContext();
   return (
     <div className="p-4 h-screen flex items-center justify-center">
-      <Routes>
+      <Login />
+      {/* <Routes>
         <Route
           path="/"
           element={authUser ? <Home /> : <Navigate to={"/login"} />}
@@ -24,7 +25,8 @@ function App() {
           path="/signup"
           element={authUser ? <Navigate to="/" /> : <SignUp />}
         />
-      </Routes>
+        <Route path="/login/federated/facebook" />
+      </Routes> */}
       <Toaster />
     </div>
   );

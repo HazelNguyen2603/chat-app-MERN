@@ -1,8 +1,10 @@
 import { useLogin } from "hooks";
 import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaFacebook } from "react-icons/fa";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -13,6 +15,9 @@ const Login = () => {
     await login({ username, password });
   };
 
+  const facebook = async () => {
+    window.open("http://localhost:5000/api/auth/facebook", "_self");
+  };
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
@@ -53,7 +58,10 @@ const Login = () => {
             Don't have an account?
           </Link>
           <div>
-            <button className="btn btn-block btn-sm mt-2">
+            <button
+              type="submit"
+              className="btn btn-outline btn-block btn-sm mt-2"
+            >
               {loading ? (
                 <span className="loading loading-spinner"></span>
               ) : (
@@ -62,6 +70,19 @@ const Login = () => {
             </button>
           </div>
         </form>
+        <button
+          onClick={facebook}
+          className="btn btn-outline  btn-block btn-sm mt-2 "
+        >
+          {loading ? (
+            <span className="loading loading-spinner"></span>
+          ) : (
+            <>
+              <FaFacebook style={{ color: "#4267B2" }} />
+              <span>Facebook</span>
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
